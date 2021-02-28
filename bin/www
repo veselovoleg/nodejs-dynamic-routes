@@ -1,58 +1,29 @@
 #!/usr/bin/env node
 //https://github.com/expressjs/generator/blob/d07ce53595086dd07efb100279a7b7addc059418/templates/js/www
+
 /**
  * Module dependencies.
  */
-
 const app = require('../app.js');
 const debug = require('debug')('{name}:server');
-const http = require('http');
-
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const port = '3000';
 
 /**
  * Create HTTP server.
  */
-
-const server = http.createServer(app);
+const httpServer = app.listen(port, () => {
+  console.log("HTTP REST API Server running at http://localhost:" + httpServer.address().port);
+});
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
+httpServer.on('error', onError);
+httpServer.on('listening', onListening);
 
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -80,9 +51,8 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
-  const addr = server.address();
+  const addr = httpServer.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
