@@ -1,0 +1,17 @@
+{
+  "name": "express-routing-practice",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "DEBUG=express-routing-practice:* node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security"
+  }
+}
